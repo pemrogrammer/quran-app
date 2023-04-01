@@ -5,6 +5,7 @@ import { QuranApi } from "../../services/quran_api";
 
 function ReadQuran() {
   const [listSurah, setListSurah] = useState([]);
+  const [detailSurah, setDetailSurah] = useState({});
 
   useEffect(() => {
     getSurah();
@@ -15,13 +16,18 @@ function ReadQuran() {
     setListSurah(surah);
   }
 
+  async function getDetailSurah(nomor) {
+    const detailSurah = await QuranApi.getDetailSurah(nomor);
+    setDetailSurah(detailSurah);
+  }
+
   return (
     <div className="bg-slate-500 flex w-full h-screen">
       {/* Bagian Kiri */}
-      <LeftSection listSurah={listSurah} />
+      <LeftSection listSurah={listSurah} getDetailSurah={getDetailSurah} />
 
       {/* Bagian Kanan */}
-      <RightSection />
+      <RightSection detailSurah={detailSurah} />
     </div>
   );
 }
