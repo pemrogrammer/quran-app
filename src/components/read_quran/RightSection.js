@@ -42,7 +42,7 @@ function HeaderSection({ namaSurah }) {
 
 function ItemAyat({ ayat, latin, nomorAyat, artiAyat }) {
   return (
-    <div className="w-full px-6 py-4 border-b border-gray-200">
+    <div className="w-full px-6 py-4 border-b border-gray-200 mb-12">
       <div className="w-full h-full flex justify-end mb-2">
         <h3 className="text-3xl font-normal">{ayat}</h3>
       </div>
