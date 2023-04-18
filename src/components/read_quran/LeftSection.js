@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from "react"
 import ListSurah from "./ListSurah";
 import InputSearch from "./InputSearch";
 
@@ -24,10 +24,16 @@ function LeftSection({ listSurah, getDetailSurah }) {
       <InputSearch value={search} onChange={onChangeHandler} />
 
       {/* List Nama Surah */}
-      <ListSurah
-        listSurah={search.length > 2 ? listSurahBaru : listSurah}
-        getDetailSurah={getDetailSurah}
-      />
+      {listSurah.length > 0 ? (
+        <ListSurah
+          listSurah={search.length > 2 ? listSurahBaru : listSurah}
+          getDetailSurah={getDetailSurah}
+        />
+      ) : (
+        <div className="h-full w-full flex justify-center items-center">
+          Tidak ada koneksi.
+        </div>
+      )}
     </div>
   );
 }

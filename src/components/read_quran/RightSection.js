@@ -1,21 +1,22 @@
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import HeaderSection from "./HeaderSection";
-import ItemAyat from "./ItemAyat";
+import ItemAyat from "../shared/ItemAyat";
+import { Utils } from "../../utils";
 
 function RightSection({ detailSurah, loadingDetail }) {
   const [onBookmark, setOnBookmark] = useState({});
 
   function setBookmark(value) {
-    const bookmark = localStorage.getItem("bookmark");
+    const bookmark = Utils.getBookmark();
 
-    if (bookmark && JSON.parse(bookmark)["id"] === value.id) {
+    if (bookmark && bookmark["id"] === value.id) {
       setOnBookmark({});
-      return localStorage.removeItem("bookmark");
+      return Utils.removeBookmark();
     }
 
-    localStorage.setItem("bookmark", JSON.stringify(value));
-    setOnBookmark(value);
+    Utils.setBookmark({ ...value, namaSurah: detailSurah.nama_latin });
+    setOnBookmark({ ...value, namaSurah: detailSurah.nama_latin });
   }
 
   function isNotEmpty() {
@@ -23,8 +24,8 @@ function RightSection({ detailSurah, loadingDetail }) {
   }
 
   useEffect(() => {
-    const bookmark = localStorage.getItem("bookmark");
-    if (bookmark) setBookmark(bookmark);
+    const bookmark = Utils.getBookmark();
+    if (bookmark) setOnBookmark(bookmark);
   }, []);
 
   return (
@@ -42,6 +43,7 @@ function RightSection({ detailSurah, loadingDetail }) {
                 data={data}
                 setBookmark={setBookmark}
                 onBookmark={onBookmark}
+                showIconBookmark={true}
               />
             ))}
           </div>

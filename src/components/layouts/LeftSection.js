@@ -1,6 +1,6 @@
 import LogoSection from "./LogoSection";
 import MenusSection from "./MenuSection";
-import QuickSearchSection from "./QuickSearchSection";
+// import QuickSearchSection from "./QuickSearchSection";
 
 function LeftSection({ menus, onHandleClickMenu, selectedPage }) {
   return (
@@ -16,7 +16,7 @@ function LeftSection({ menus, onHandleClickMenu, selectedPage }) {
       />
 
       {/* Quick Search Section*/}
-      <QuickSearchSection />
+      {/* <QuickSearchSection /> */}
     </div>
   );
 }

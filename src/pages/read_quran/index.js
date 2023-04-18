@@ -24,7 +24,7 @@ function ReadQuran() {
   async function getDetailSurah(nomor) {
     setLoadingDetail(true);
     setDetailSurah({});
-    
+
     await QuranApi.getDetailSurah(nomor).then((detailSurah) => {
       setDetailSurah(detailSurah);
       setLoadingDetail(false);
@@ -38,11 +38,14 @@ function ReadQuran() {
       ) : (
         <>
           {/* Bagian Kiri */}
-          <LeftSection listSurah={listSurah} getDetailSurah={getDetailSurah} />
+          <LeftSection
+            listSurah={listSurah ?? []}
+            getDetailSurah={getDetailSurah}
+          />
 
           {/* Bagian Kanan */}
           <RightSection
-            detailSurah={detailSurah}
+            detailSurah={detailSurah ?? []}
             loadingDetail={loadingDetail}
           />
         </>
